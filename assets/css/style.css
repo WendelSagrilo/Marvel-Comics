@@ -130,17 +130,25 @@
     border: 3px solid red;
     border-radius: 5px;
     margin: 0 5px;
+}
 
+#teamB{
+    border-color: blue;
 }
 
 .character{
     width: 100%;
-    height: 32.3%;
+    height: 33.3%;
 }
 
 .character:nth-child(2){
     border-top:2px solid red ;
     border-bottom:2px solid red ;
+}
+
+#character5{
+    border-top:2px solid blue ;
+    border-bottom:2px solid blue ;   
 }
 
 .btn-result{
@@ -195,7 +203,8 @@
  
 .box-hero{
     width: 100%;
-    height: 25%;
+    height: 23%;
+    margin: 2% 0;
 }
 
 
@@ -203,15 +212,46 @@
     height: 100%;
     width: 23%;
     border-radius:50%;
-    padding: 2px;
     margin: 1px 1px;
     cursor: pointer;
 }
 
-.hero:nth-child(1):active{
-    
+.victory-screen{
+    display: none;
+    height: 100%;
+    width: 100vw;
+    background-color: rgba(0,0,0,.73);
 }
 
+.team-win{
+    width: 70%;
+    height: 100%;
+}
+
+.team-win > h1{
+    font-family: radical;
+    margin: 30px;
+    color: #2db42d;
+    border-bottom: 5px solid;
+}
+
+.figureVic{
+    width: 100%;
+    height: 30%;
+}
+
+.img-team{
+    width: 60%;
+    height: 62%;
+    margin: 0 20%;
+    border-radius: 20px;
+}
+
+.name-win{
+    text-align: center;
+    font-weight: 900;
+    color: white;
+}
 
 @font-face {
     font-family: radical;

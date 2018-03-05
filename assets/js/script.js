@@ -1,4 +1,9 @@
-document.getElementsByTagName("body")[0].style.cursor = "url('../img/cursorBox.png'), auto";
+var teamA = [];
+var teamB = [];
+var resultA = 0;
+var resultB = 0;
+var nameA = [];
+var nameB = [];
 
 $(function(){
     //Animação tela Escura
@@ -79,18 +84,142 @@ function selectHero(){
     },600);
 
     var character = document.getElementsByClassName('hero');
-    console.log(character);
-
     for(var i = 0; i< character.length; i++){
         character[i].addEventListener("mouseover", function(){
-            console.log(this.id);
-            this.style.borderBottom = "3px solid black";
+            
+            this.style.borderBottom = "4px solid black";
+
+            if(this.accessKey < 10){
+                document.getElementById("imgBig1").setAttribute("src", this.src);
+                $("#name1").html(listCharacters[this.accessKey].name);
+            } else {
+                document.getElementById("imgBig2").setAttribute("src", this.src);
+                $("#name2").html(listCharacters[this.accessKey].name);
+            }
+
+        });
+        character[i].addEventListener("mouseout", function(){
+            this.style.borderBottom = "none";
+            $("#imgBig1").attr("src", "assets/img/spiderBig.jpg");
+            $("#imgBig2").attr("src", "assets/img/venomBig.png");
 
         });
 
-        character[i].addEventListener("mouseout", function(){
-            this.style.borderBottom = "none";
-
+        $(character[i]).on("click", function(){
+            
+            teamBattle(this);
         });
     }
 }
+
+function teamBattle(element){
+    var choice = document.getElementsByClassName("character"); 
+    var keyElementA = teamA.length;
+    var keyElementB = teamB.length;
+    var source = $(element).attr("src");
+
+    $(choice[keyElementA]).attr("accessKey", element.accessKey);
+
+
+    //Team A
+    if(element.accessKey < 10){
+        
+        if(teamA.length < 3){
+
+        $(choice[keyElementA]).attr("src", source);
+        teamA.push(listCharacters[element.accessKey]);
+        }
+    } 
+    //TeamB
+    else { 
+        $(choice[keyElementB+3]).attr("src", source);
+        teamB.push(listCharacters[element.accessKey]);
+
+    }
+
+}
+
+
+//Iniciar Confronto
+$("#result").on("click", function(){
+    var nameVictory = document.getElementsByClassName("name-win");
+    var imgVictory = document.getElementsByClassName("img-team");
+
+    var qnt = 0; 
+
+    
+    if(teamA.length == 0 || teamB.length == 0){
+        alert("escolha ao menos 1 personagem em cada time");
+    }else{
+
+        for(i=0;i<teamA.length;i++){
+            qnt = teamA[i].comics;
+            resultA = resultA + qnt;
+            
+        }
+        
+        for(i=0;i<teamB.length;i++){
+            qnt = teamB[i].comics;
+            resultB = resultB + qnt;
+            
+        }
+        
+        //Team A ganha
+
+        if(resultA > resultB){
+            $(".box-select").fadeOut("300");
+
+            setInterval(function(){
+                $("#victory").css({
+                    display: "block",
+                });
+                $("#teamVictory").html("TEAM A ");
+            },301);
+
+
+            for(i=0;i < teamA.length; i++){
+                $(nameVictory[i], imgVictory[i]).attr("accessKey", i);
+                nameA.push(teamA[i]);
+                console.log(nameA);
+            }
+
+            
+            for(i=0; i < nameA.length; i++){
+                $(imgVictory[i]).attr("src", nameA[i].image);
+                console.log(nameA[i].description);
+                $(nameVictory[i]).html(nameA[i].name + "\n" + nameA[i].description);
+            }
+
+        //Team B ganha
+            
+        }else{ if(resultB > resultA){
+                $(".box-select").fadeOut("300");
+
+                setInterval(function(){
+
+                    $("#victory").css({
+                        display: "block",
+                    });
+                    $("#teamVictory").html("TEAM B ");
+                },301);
+
+                for(i=0;i < teamB.length; i++){
+                    $(nameVictory[i], imgVictory[i]).attr("accessKey", i);
+                    nameB.push(teamA[i]);
+                }
+
+                
+                for(i=0; i < nameB.length; i++){
+                    $(imgVictory[i]).attr("src", nameB[i].image);
+                    console.log(nameB[i].description);
+                    $(nameVictory[i]).html(nameB[i].name+ "$nsbp$nsbp"+ nameB[i].comics + '</br> '+ nameB[i].description);
+                } 
+        }else if(resultA == resultB){
+            alert("Empate");
+            }
+        }
+
+    }
+    
+});
+

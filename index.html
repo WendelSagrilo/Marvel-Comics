@@ -88,25 +88,25 @@
             </div>
 
             <div class="box-team d-flex justify-content-around">
-                <section class="team">
-                    <img class="character" id="character1" src="assets/img/venomBig.png">
+                <section class="team" id="teamA">
+                    <img class="character" id="character1" src="assets/img/spiderBig.jpg">
 
                     <img class="character" id="character2" src="assets/img/spiderBig.jpg">
 
-                    <img class="character" id="character3" src="assets/img/venomBig.png">
+                    <img class="character" id="character3" src="assets/img/spiderBig.jpg">
                 </section>
 
-                <section class="team">
-                    <img class="character" id="character1" src="assets/img/spiderBig.jpg">
+                <section class="team" id="teamB">
+                    <img class="character" id="character4" src="assets/img/venomBig.png">
         
-                    <img class="character" id="character2" src="assets/img/venomBig.png">
+                    <img class="character" id="character5" src="assets/img/venomBig.png">
         
-                    <img class="character" id="character3" src="assets/img/spiderBig.jpg">
+                    <img class="character" id="character6" src="assets/img/venomBig.png">
                 </section>
 
             </div>
 
-            <button class="btn-result">Comparar Times</button>
+            <button class="btn-result" id="result">Comparar Times</button>
         </section>
 
     <!-- Seleção 2 -->
@@ -153,17 +153,48 @@
         </section>
     </div>
 
+    <!-- Victory Screen -->
 
 
-
+    <div class="victory-screen d-flex justify-content-center " id="victory">
+        <div class="team-win d-flex flex-column justify-content- center align-self-center ">
+            <h1 class="d-flex align-self-center" id="teamVictory"></h1>
+            <figure class="figureVic" >
+                <img class="img-team" src="">
+                <figcaption class="name-win"></figcaption>
+            </figure>
+    
+            <figure class="figureVic">
+                <img class="img-team" src="">
+                <figcaption class="name-win"></figcaption>
+            </figure>
+    
+            <figure class="figureVic">
+                <img class="img-team" src="">
+                <figcaption class="name-win"></figcaption>
+            </figure>
+                
+        </div>
+    </div>
 
     <!-- Library -->
+    <!--  Bootstrap / jQuery -->
     <script
     src="https://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous">
     </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+
+    <!--  Arquivos javascript -->
+    <script src="assets/js/api/api.js"></script>
+    <script src="assets/js/character.js"></script>
     <script src="assets/js/script.js"></script>
+
+
+    <!--  md5  -->
+    <script src="assets/libs/md5.min.js"></script>
+    
 </body>
