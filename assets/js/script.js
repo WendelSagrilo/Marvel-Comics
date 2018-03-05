@@ -163,7 +163,7 @@ $("#result").on("click", function(){
             nameA.push(teamA[i]);
 
             $(imgVictory[i]).attr("src", nameA[i].image);
-            $(nameVictory[i]).html(nameA[i].name+ "&nbsp-&nbsp"+ nameA[i].comics + "aparições");
+            $(nameVictory[i]).html(nameA[i].name+ "&nbsp-&nbsp"+ nameA[i].comics + " Comics");
             //  + '</br> '+ nameA[i].description);
             
 
