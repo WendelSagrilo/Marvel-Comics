@@ -144,6 +144,7 @@ function teamBattle(element){
 $("#result").on("click", function(){
     var nameVictory = document.getElementsByClassName("name-win");
     var imgVictory = document.getElementsByClassName("img-team");
+    var characterBattle = document.getElementsByClassName("character");
 
     var qnt = 0; 
 
@@ -152,70 +153,82 @@ $("#result").on("click", function(){
         alert("escolha ao menos 1 personagem em cada time");
     }else{
 
+        $("body").css({
+            height: "100%"
+        });
+
         for(i=0;i<teamA.length;i++){
             qnt = teamA[i].comics;
             resultA = resultA + qnt;
+            nameA.push(teamA[i]);
+
+            $(imgVictory[i]).attr("src", nameA[i].image);
+            $(nameVictory[i]).html(nameA[i].name+ "&nbsp-&nbsp"+ nameA[i].comics + "aparições");
+            //  + '</br> '+ nameA[i].description);
             
+
         }
         
         for(i=0;i<teamB.length;i++){
             qnt = teamB[i].comics;
             resultB = resultB + qnt;
+            nameB.push(teamB[i]);
+            
+            $(imgVictory[i+3]).attr("src", nameB[i].image);
+            $(nameVictory[i+3]).html(nameB[i].name+ "&nbsp-&nbsp"+ nameB[i].comics + " Comics");
+            //  + " &nbsp aparições" + '</br> '+ nameB[i].description);
             
         }
+
         
         //Team A ganha
 
         if(resultA > resultB){
-            $(".box-select").fadeOut("300");
-
-            setInterval(function(){
+            setInterval(function(){    
+                $(".box-select").fadeOut("300");
                 $("#victory").css({
                     display: "block",
                 });
-                $("#teamVictory").html("TEAM A ");
+                $("#teamVictory").html("TEAM A WIN!! "+"<br>"+ resultA + " X " + resultB);
+                $("#teamVictory2").html("TEAM B LOSE!! "+"<br>"+ resultB + " X " + resultA);
+
+                $("#teamVictory2").css({
+                    color: "red",
+                });
             },301);
-
-
-            for(i=0;i < teamA.length; i++){
-                $(nameVictory[i], imgVictory[i]).attr("accessKey", i);
-                nameA.push(teamA[i]);
-                console.log(nameA);
-            }
-
-            
-            for(i=0; i < nameA.length; i++){
-                $(imgVictory[i]).attr("src", nameA[i].image);
-                console.log(nameA[i].description);
-                $(nameVictory[i]).html(nameA[i].name + "\n" + nameA[i].description);
-            }
 
         //Team B ganha
             
         }else{ if(resultB > resultA){
                 $(".box-select").fadeOut("300");
-
                 setInterval(function(){
-
                     $("#victory").css({
                         display: "block",
                     });
-                    $("#teamVictory").html("TEAM B ");
+                    $("#teamVictory").html("TEAM A LOSE!! "+"<br>"+ resultA + " X " + resultB);
+                    $("#teamVictory2").html("TEAM B WIN!! "+"<br>"+ resultB + " X " + resultA);
+
+
+                    $("#teamVictory").css({
+                        color: "red",
+                    });
+                    
                 },301);
 
-                for(i=0;i < teamB.length; i++){
-                    $(nameVictory[i], imgVictory[i]).attr("accessKey", i);
-                    nameB.push(teamA[i]);
-                }
+                }else if(resultA == resultB){
+                    $(".box-select").fadeOut("300");
+                    setInterval(function(){
+                        $("#victory").css({
+                            display: "block",
+                        });
+                        $("#teamVictory").html("EMPATE "+ resultB + " X " + resultA);
+                        $("#teamVictory2").html("EMPATE "+ resultA + " X " + resultB);
 
-                
-                for(i=0; i < nameB.length; i++){
-                    $(imgVictory[i]).attr("src", nameB[i].image);
-                    console.log(nameB[i].description);
-                    $(nameVictory[i]).html(nameB[i].name+ "$nsbp$nsbp"+ nameB[i].comics + '</br> '+ nameB[i].description);
-                } 
-        }else if(resultA == resultB){
-            alert("Empate");
+                        $("#teamVictory, #teamVictory2").css({
+                            color: "yellow",
+                        });
+                    
+                    },301);
             }
         }
 

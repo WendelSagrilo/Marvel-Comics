@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+body{
+    max-height: 100vh;
+}
+
 .loading{
     width: 100vw;
     height: 100vh;
@@ -224,15 +228,16 @@
 }
 
 .team-win{
-    width: 70%;
+    width: 40%;
     height: 100%;
+    padding-top: 5px; 
 }
 
 .team-win > h1{
     font-family: radical;
-    margin: 30px;
+    width: 100%;
     color: #2db42d;
-    border-bottom: 5px solid;
+    text-align: center;
 }
 
 .figureVic{
@@ -252,6 +257,7 @@
     font-weight: 900;
     color: white;
 }
+
 
 @font-face {
     font-family: radical;
