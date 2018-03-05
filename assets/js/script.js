@@ -113,30 +113,31 @@ function selectHero(){
 }
 
 function teamBattle(element){
-    var choice = document.getElementsByClassName("character"); 
+    var choice = document.getElementsByClassName("character");
     var keyElementA = teamA.length;
     var keyElementB = teamB.length;
     var source = $(element).attr("src");
 
     $(choice[keyElementA]).attr("accessKey", element.accessKey);
 
+    var selectedCharacter = listCharacters[element.accessKey];
 
-    //Team A
     if(element.accessKey < 10){
-        
+
         if(teamA.length < 3){
-
-        $(choice[keyElementA]).attr("src", source);
-        teamA.push(listCharacters[element.accessKey]);
+            if (teamA.indexOf(selectedCharacter) === -1){
+                $(choice[keyElementA]).attr("src", source);
+               
+                teamA.push(selectedCharacter);
+            }
         }
-    } 
-    //TeamB
-    else { 
-        $(choice[keyElementB+3]).attr("src", source);
-        teamB.push(listCharacters[element.accessKey]);
-
     }
-
+    else {
+        if (teamB.indexOf(selectedCharacter) === -1){
+            $(choice[keyElementB+3]).attr("src", source);
+            teamB.push(selectedCharacter);
+        }
+    }
 }
 
 
@@ -154,7 +155,8 @@ $("#result").on("click", function(){
     }else{
 
         $("body").css({
-            height: "100%"
+            height: "100%",
+            overflow: "visible",
         });
 
         for(i=0;i<teamA.length;i++){
@@ -163,7 +165,7 @@ $("#result").on("click", function(){
             nameA.push(teamA[i]);
 
             $(imgVictory[i]).attr("src", nameA[i].image);
-            $(nameVictory[i]).html(nameA[i].name+ "&nbsp-&nbsp"+ nameA[i].comics + "aparições");
+            $(nameVictory[i]).html(nameA[i].name+ "&nbsp/&nbsp"+ nameA[i].comics + " Comics");
             //  + '</br> '+ nameA[i].description);
             
 
@@ -175,7 +177,7 @@ $("#result").on("click", function(){
             nameB.push(teamB[i]);
             
             $(imgVictory[i+3]).attr("src", nameB[i].image);
-            $(nameVictory[i+3]).html(nameB[i].name+ "&nbsp-&nbsp"+ nameB[i].comics + " Comics");
+            $(nameVictory[i+3]).html(nameB[i].name+ "&nbsp/&nbsp"+ nameB[i].comics + " Comics");
             //  + " &nbsp aparições" + '</br> '+ nameB[i].description);
             
         }
@@ -224,7 +226,7 @@ $("#result").on("click", function(){
                         $("#teamVictory").html("EMPATE "+ resultB + " X " + resultA);
                         $("#teamVictory2").html("EMPATE "+ resultA + " X " + resultB);
 
-                        $("#teamVictory, #teamVictory2").css({
+                        $("#teamVictory , #teamVictory2").css({
                             color: "yellow",
                         });
                     
@@ -232,7 +234,11 @@ $("#result").on("click", function(){
             }
         }
 
-    }
-    
+    } 
+});
+
+//Jogar Novamente
+$("#playAgain").on("click",function(){
+    window.load('index.html');
 });
 
