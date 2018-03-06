@@ -49,8 +49,11 @@ function createTeam(list){
     for(i=0; i< list.length; i++){
         $(element[i]).attr("src", list[i].image);
         $(element[i]).attr("accessKey", i); 
-    }
+        
 
-    
+    if(i ==19){
+        $("#btnStart").prop("disabled", false);
+    }
+    }
 }
 
